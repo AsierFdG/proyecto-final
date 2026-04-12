@@ -21,8 +21,8 @@
         </a>
 
         <div class="ms-auto">
-            <a href="login.php" class="btn btn-outline-light me-2">Iniciar sesión</a>
-            <a href="registro.php" class="btn btn-success">Registro</a>
+            <a href="vistas/login.php" class="btn btn-outline-light me-2">Iniciar sesión</a>
+            <a href="vistas/registro.php" class="btn btn-success">Registro</a>
         </div>
     </div>
 </nav>
@@ -41,7 +41,7 @@
                     Menditrack es una plataforma donde los usuarios pueden subir rutas de montaña,
                     compartir experiencias y descubrir nuevos recorridos creados por la comunidad.
                 </p>
-                <a href="registro.php" class="btn btn-primary btn-lg">Comenzar</a>
+                <a href="vistas/registro.php" class="btn btn-primary btn-lg">Comenzar</a>
             </div>
 
         </div>
@@ -94,7 +94,7 @@
     <div class="container">
         <h2>Únete a la comunidad Menditrack</h2>
         <p>Crea una cuenta y empieza a compartir tus rutas de montaña.</p>
-        <a href="registro.php" class="btn btn-success">Registrarse</a>
+        <a href="vistas/registro.php" class="btn btn-success">Registrarse</a>
     </div>
 </section>
 
