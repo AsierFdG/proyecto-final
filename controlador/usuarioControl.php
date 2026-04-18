@@ -12,7 +12,7 @@ $usuario = $modelo->buscar($nombre, $contraseña);
 
 if ($usuario) {
     $_SESSION["usuario"] = $usuario["nombre"];
-    header("Location: ../juego.php");
+    header("Location: ../vistas/publicaciones.php");
 } else {
     $_SESSION["error"] = "Usuario o contraseña incorrectos";
     header("Location: ../registro.php");

@@ -59,7 +59,7 @@
                 <div class="text-center mt-4">
                     <small class="text-muted">
                         ¿Ya tienes cuenta? 
-                        <a href="vistas/login.php" class="fw-semibold text-decoration-none">Inicia sesión</a>
+                        <a href="login.php" class="fw-semibold text-decoration-none">Inicia sesión</a>
                     </small>
                 </div>
 
