@@ -81,19 +81,33 @@ class Usuarios {
 
     }
 
-    public function buscar($nombre, $contraseña){
-        $usuario= new Usuarios();
-        $datos=$usuario->mostrarDatos();
 
-        $encontrado=false;
-        foreach($datos as $dato) {
-            if ($dato["contraseña"]==$contraseña && $dato["nombre"]==$nombre){
-                $encontrado=true;
-            }
+       public function buscar($nombre, $contraseña){
+
+    $bd = getConnection();
+
+    $sql = "SELECT * FROM usuarios 
+            WHERE nombre = '$nombre' 
+            AND contraseña = '$contraseña'";
+
+    if ($resultado = $bd->query($sql)) {
+
+        if ($resultado->num_rows > 0) {
+
+            $usuario = $resultado->fetch_assoc(); 
+            return $usuario;
+
+        } else {
+            return false;
         }
-    return $encontrado;
-
     }
+
+    return false;
+}
+
+    
+
+    
 
     public function modificarcontra(){
     $bd=getConnection();
