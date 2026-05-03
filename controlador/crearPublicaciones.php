@@ -1,5 +1,5 @@
 <?php
-require_once 'Publicacion.php';
+require_once __DIR__ . "/../modelo/Publicaciones.php";
 session_start();
 
 
@@ -8,7 +8,7 @@ function recogerCampo($campo) {
         ? trim($_POST[$campo])
         : null;
 }
-
+echo $_SESSION["idUsuario"];
 // Array con TODOS los campos del formulario
 $datos = [
 
@@ -24,12 +24,12 @@ $datos = [
     'cimas' => recogerCampo('cimas'),
 
     // usuario desde sesión
-    'usuario_id' => $_SESSION['usuario_id'] ?? null
+    'usuario_id' => $_SESSION['idUsuario'] ?? null
 ];
 
 // Imágenes (fuera del array)
 $imagenes = $_FILES['imagenes'] ?? null;
-$publicacion = new Publicacion();
-$publicacion->insertarPubli($titulo, $contenido, $usuario_id, $imagenes);
+$publicacion = new Publicaciones();
+$publicacion->insertarPubli($datos);
 
 ?>

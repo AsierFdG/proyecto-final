@@ -48,7 +48,7 @@ body {
           <i class="bi bi-map"></i> Crear nueva ruta
         </h2>
 
-        <form action="procesar_publicacion.php" method="POST" enctype="multipart/form-data">
+        <form action="../controlador/crearPublicaciones.php" method="POST" enctype="multipart/form-data">
 
           <div class="row g-4">
 

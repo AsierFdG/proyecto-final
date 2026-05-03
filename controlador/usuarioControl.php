@@ -12,7 +12,7 @@ $usuario = $modelo->buscar($nombre, $contraseña);
 
 if ($usuario) {
     $_SESSION["usuario"] = $usuario["nombre"];
-    $_SESSION["idUsuario]"] = $usuario["id_usuario"];
+    $_SESSION["idUsuario"] = $usuario["id"];
     header("Location: ../vistas/publicaciones.php");
 } else {
     $_SESSION["error"] = "Usuario o contraseña incorrectos";

@@ -44,3 +44,6 @@ CREATE TABLE imagenes (
     FOREIGN KEY (publicacion_id) REFERENCES publicaciones(id) ON DELETE CASCADE,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
+
+ALTER TABLE imagenes
+ADD url_imagen VARCHAR(255) NOT NULL;
