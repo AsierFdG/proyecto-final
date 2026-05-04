@@ -33,12 +33,16 @@ class Publicaciones {
 
         // Se ejecuta la consulta		
         if ($resultado = $bd->query ($sql)) {
-            if ($bd->affected_rows == 1)
+            if ($bd->affected_rows == 1) {
                 $ultimo_id =  $bd->insert_id;
                 echo "<br>Nueva publicacion en la base de datos con id " . $ultimo_id;
-            } else {
-                echo "<br>Error: " . $sql . "<br>" . $bd->error;
+                return $ultimo_id;
             }
+        } else {
+            echo "<br>Error: " . $sql . "<br>" . $bd->error;
+        }
+
+        return false;
     }
 
 
