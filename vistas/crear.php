@@ -1,5 +1,5 @@
 <?php include("cabecera.php"); ?>
-<!-- ================= CONTENIDO ================= -->
+
 <main class="container my-5 flex-grow-1">
  
 <style>

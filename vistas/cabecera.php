@@ -16,22 +16,19 @@ $paginaActiva = basename($_SERVER['PHP_SELF']);
 ?>
 <body class="d-flex flex-column min-vh-100">
 
-<!-- ================= NAVBAR ================= -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
 
-    <!-- Logo + Nombre -->
     <a class="navbar-brand d-flex align-items-center gap-2" href="#">
       <i class="bi bi-geo-alt-fill"></i>
       <span class="fw-bold">Menditrack</span>
     </a>
 
-    <!-- Botón móvil -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Menú -->
     <div class="collapse navbar-collapse" id="menuNav">
       <ul class="navbar-nav ms-auto text-center">
 

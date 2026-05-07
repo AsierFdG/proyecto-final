@@ -1,4 +1,4 @@
-<!-- ================= FOOTER ================= -->
+
 <footer class="bg-dark text-light mt-auto">
   <div class="container py-4">
 
