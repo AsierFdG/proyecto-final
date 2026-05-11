@@ -74,5 +74,22 @@ class Publicaciones {
     }
 }
 
+    public function publicacionesByIdUsuario($idUsuario){
+
+        $bd = getConnection();
+        $sql = "SELECT
+                id,
+                titulo,
+                dificultad,
+                tiempo_estimado,
+                kilometros
+                FROM publicaciones
+                WHERE usuario_id = '$idUsuario'";
+
+        $resultado = $bd->query($sql);
+
+        return $resultado;
+    }
+
 
 }

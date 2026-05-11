@@ -6,8 +6,9 @@
     <div class="text-center text-muted">
         
 <?php
+require_once __DIR__ . "/../controlador/perfilControl.php";
 
-
+$publi = mostrarPublicaciones();
 $publicaciones = [
   ["id"=>1,"titulo"=>"Ruta por el monte","dificultad"=>"Fácil","tiempo_estimado"=>"2h","kilometros"=>"5"],
   ["id"=>2,"titulo"=>"Sendero costero","dificultad"=>"Media","tiempo_estimado"=>"4h","kilometros"=>"12"],
@@ -71,7 +72,7 @@ $colores = [
 
         <?php if(!empty($publicaciones)): ?>
 
-          <?php foreach($publicaciones as $pub): ?>
+          <?php foreach($publi as $pub): ?>
 
           <?php
            
@@ -141,11 +142,11 @@ $colores = [
   <!-- VISTA MÓVIL -->
   <div class="d-block d-md-none">
 
-    <?php if(!empty($publicaciones)): ?>
+    <?php if(!empty($publicaciones)): 
 
-      <?php foreach($publicaciones as $pub): ?>
+       foreach($publi as $pub): 
 
-      <?php
+      
      $color = $colores[$pub['dificultad']] ?? "secondary";
       ?>
 

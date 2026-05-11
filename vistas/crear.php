@@ -162,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 🔥 CLAVE: acumular en vez de reemplazar
     archivos = archivos.concat(nuevosArchivos);
 
+    actualizarInput();
     mostrarPreview();
   });
 

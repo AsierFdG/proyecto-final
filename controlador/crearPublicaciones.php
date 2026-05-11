@@ -11,6 +11,7 @@ function recogerCampo($campo) {
 
 function guardarImagenes($imagenes, $idPublicacion, $idUsuario, $publicacion) {
     if (!isset($imagenes['name']) || !is_array($imagenes['name'])) {
+         echo "No llegan imágenes correctamente";
         return;
     }
 
@@ -77,8 +78,9 @@ $publicacion = new Publicaciones();
 $idPublicacion = $publicacion->insertarPubli($datos);
 
 if ($idPublicacion) {
-    $imagenes = $_FILES['imagenes'] ?? null;
-    guardarImagenes($imagenes, $idPublicacion, $datos['usuario_id'], $publicacion);
+    if (isset($_FILES['imagenes'])) {
+        guardarImagenes($_FILES['imagenes'], $idPublicacion, $datos['usuario_id'], $publicacion);
+    }
 }
 
 ?>
