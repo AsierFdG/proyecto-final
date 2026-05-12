@@ -70,7 +70,7 @@ $colores = [
 
         <tbody>
 
-        <?php if(!empty($publicaciones)): ?>
+        <?php if(!empty($publi)): ?>
 
           <?php foreach($publi as $pub): ?>
 

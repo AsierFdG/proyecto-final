@@ -9,5 +9,16 @@ session_start();
         return $publi->publicacionesByIdUsuario($idUsuario);
     }
 
+    function mostrarPublicacionById($id) {
+        $publi = new Publicaciones();
+        $publicacion = $publi->publicacionById($id);
+        $imagenes = $publi->imagenesByPublicacion($id);
+
+        $publicacion['imagenes'] = $imagenes;
+
+        return $publicacion;
+
+    }
+
 
 ?>
