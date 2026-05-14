@@ -17,6 +17,12 @@ session_start();
         $publicacion['imagenes'] = $imagenes;
 
         return $publicacion;
+    }
+
+    function eliminarPublicacionById($id) {
+        $publi = new Publicaciones();
+
+        return $publi->eliminarPublicacionById($id);
 
     }
 

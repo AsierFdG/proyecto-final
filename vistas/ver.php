@@ -31,7 +31,6 @@ $total = count($imagenes);
 
             <div class="card shadow">
 
-                <!-- CABECERA CON USUARIO -->
                 <div class="card-header bg-dark text-white">
                     <small>Publicado por:</small><br>
                     <strong><?php echo $pub['usuario_nombre']; ?></strong>
@@ -41,14 +40,12 @@ $total = count($imagenes);
 
     <?php if ($total == 1): ?>
 
-        <!-- UNA SOLA IMAGEN -->
         <img src="/Proyecto-final/<?php echo $imagenes[0]; ?>" 
              class="card-img-top img-fluid"
              style="max-height:400px; object-fit:cover;">
 
     <?php else: ?>
 
-        <!-- CARRUSEL -->
         <div id="carouselPublicacion" class="carousel slide">
 
             <div class="carousel-inner">
@@ -63,7 +60,6 @@ $total = count($imagenes);
 
             </div>
 
-            <!-- BOTONES -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselPublicacion" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </button>
@@ -76,14 +72,12 @@ $total = count($imagenes);
 
     <?php endif; ?>
 
-    <!-- CONTADOR DE IMÁGENES -->
     <div class="text-center mt-2 text-muted">
         <?php echo $total; ?> imagen<?php echo ($total > 1) ? 'es' : ''; ?>
     </div>
 
 <?php else: ?>
 
-    <!-- SIN IMÁGENES -->
     <div class="text-center p-4 bg-light">
         <em>No hay imágenes disponibles</em>
     </div>
@@ -92,19 +86,16 @@ $total = count($imagenes);
 
                 <div class="card-body">
 
-                    <!-- Título -->
                     <h2 class="card-title mb-3">
                         <?php echo $pub['titulo']; ?>
                     </h2>
 
-                    <!-- Descripción -->
                     <p class="card-text">
                         <?php echo nl2br($pub['descripcion']); ?>
                     </p>
 
                     <hr>
 
-                    <!-- Datos -->
                     <div class="row">
 
                         <div class="col-md-6 mb-2">
@@ -156,9 +147,8 @@ $total = count($imagenes);
                 </div>
             </div>
 
-            <!-- Botón volver -->
             <div class="mt-3 text-center">
-                <a href="index.php" class="btn btn-secondary">
+                <a href="perfil.php" class="btn btn-secondary">
                     Volver
                 </a>
             </div>

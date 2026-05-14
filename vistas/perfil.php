@@ -1,4 +1,8 @@
-<?php include("cabecera.php"); ?>
+<?php 
+include("cabecera.php");
+require_once __DIR__ . "/../controlador/perfilControl.php";
+
+?>
 <!-- ================= CONTENIDO ================= -->
 <main class="container my-5 flex-grow-1">
     <h1 class="text-center mb-4">Perfil</h1>
@@ -6,7 +10,6 @@
     <div class="text-center text-muted">
         
 <?php
-require_once __DIR__ . "/../controlador/perfilControl.php";
 
 $publi = mostrarPublicaciones();
 $publicaciones = [
@@ -21,6 +24,12 @@ $colores = [
   "Difícil" => "danger",
   "Muy difícil" => "dark"
 ];
+
+$mensaje = null;
+if (isset($_SESSION['toast_guardado'])) {
+    $mensaje = $_SESSION['toast_guardado'];
+    unset($_SESSION['toast_guardado']); 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +66,7 @@ $colores = [
     <div class="table-responsive">
 
       <table class="table table-hover align-middle bg-white shadow-sm">
-
+  
         <thead class="table-light">
           <tr class="text-center">
             <th class="py-3">Título</th>
@@ -108,7 +117,7 @@ $colores = [
                   Editar
                 </a>
 
-                <a href="borrar.php?id=<?= $pub['id'] ?>" 
+                <a href="../controlador/eliminarPubli.php?id=<?= $pub['id'] ?>" 
                    class="btn btn-outline-danger btn-sm px-3">
                   Borrar
                 </a>
@@ -213,7 +222,37 @@ $colores = [
 
     </div>
 </main>
+<?php if ($mensaje): ?>
 
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+    const toast = document.createElement("div");
+    toast.innerText = "<?= $mensaje ?>";
+    toast.style.position = "fixed";
+    toast.style.top = "20px";
+    toast.style.right = "20px";
+
+    <?php if ($mensaje == "Publicación guardada correctamente"): ?>
+    toast.style.background = "#28a745";
+
+    <?php elseif ($mensaje== "Publicación eliminada correctamente"): ?>
+    toast.style.background = "#dc3545";
+
+    <?php endif; ?>
+
+    toast.style.color = "white";
+    toast.style.padding = "12px 18px";
+    toast.style.borderRadius = "8px";
+    toast.style.zIndex = "9999";
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 5000);
+});
+</script>
+<?php endif; ?>
 
 <?php include("footer.php"); ?>
 <!-- Bootstrap JS -->

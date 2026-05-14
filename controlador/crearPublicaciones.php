@@ -80,7 +80,12 @@ $idPublicacion = $publicacion->insertarPubli($datos);
 if ($idPublicacion) {
     if (isset($_FILES['imagenes'])) {
         guardarImagenes($_FILES['imagenes'], $idPublicacion, $datos['usuario_id'], $publicacion);
+        header("Location: ../vistas/perfil.php");
     }
+
+    $_SESSION['toast_guardado'] = "Publicación guardada correctamente";
+    header("Location: ../vistas/perfil.php");
+    exit;
 }
 
 ?>

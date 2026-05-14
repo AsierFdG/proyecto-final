@@ -133,6 +133,15 @@ class Publicaciones {
     return $imagenes;
     }
 
+    public function eliminarPublicacionById($id){
+
+    $bd = getConnection();
+    $sql = "DELETE FROM publicaciones WHERE id = '$id'";
+
+    $resultado = $bd->query($sql);
+
+    return $resultado;
+}
 
 
 }
