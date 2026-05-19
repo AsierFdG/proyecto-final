@@ -1,6 +1,10 @@
 
-<?php include("cabecera.php"); ?>
-<!-- ================= CONTENIDO ================= -->
+<?php 
+include("cabecera.php");
+
+
+
+?>
 <main class="container my-5 flex-grow-1">
     <h1 class="text-center mb-4">Publicaciones</h1>
 

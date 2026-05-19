@@ -45,6 +45,55 @@ class Publicaciones {
         return false;
     }
 
+    
+    public function editarPublicacionById($parametros) {
+        $bd = getConnection();
+
+        $sql = "UPDATE publicaciones SET
+                titulo = '{$parametros['titulo']}',
+                descripcion = '{$parametros['descripcion']}',
+                dificultad = '{$parametros['dificultad']}',
+                tiempo_estimado = '{$parametros['tiempo']}',
+                kilometros = '{$parametros['kilometros']}',
+                punto_inicio = '{$parametros['punto_inicio']}',
+                desnivel_positivo = '{$parametros['desnivel_positivo']}',
+                desnivel_negativo = '{$parametros['desnivel_negativo']}',
+                cimas = '{$parametros['cimas']}'
+                WHERE id = '{$parametros['id']}'
+                AND usuario_id = '{$parametros['usuario_id']}'";
+
+        if ($resultado = $bd->query($sql)) {
+            return true;
+        } else {
+            echo "<br>Error: " . $sql . "<br>" . $bd->error;
+        }
+
+        return false;
+    }
+
+    public function eliminarImagenesNoIncluidas($idPublicacion, $imagenesActuales) {
+        $bd = getConnection();
+
+        if (empty($imagenesActuales)) {
+            $sql = "DELETE FROM imagenes WHERE publicacion_id = '$idPublicacion'";
+            return $bd->query($sql);
+        }
+
+        $imagenesEscapadas = [];
+
+        foreach ($imagenesActuales as $imagen) {
+            $imagenesEscapadas[] = "'" . $bd->real_escape_string($imagen) . "'";
+        }
+
+        $imagenesPermitidas = implode(",", $imagenesEscapadas);
+
+        $sql = "DELETE FROM imagenes
+                WHERE publicacion_id = '$idPublicacion'
+                AND url_imagen NOT IN ($imagenesPermitidas)";
+
+        return $bd->query($sql);
+    }
+
 
     public function insertarImagen($parametros) {
 
@@ -91,7 +140,23 @@ class Publicaciones {
         return $resultado;
     }
 
-    public function publicacionById($id){
+    public function getTodoPublicaciones() {
+        $bd = getConnection();
+
+        $sql = "SELECT
+                id,
+                titulo,
+                dificultad,
+                tiempo_estimado,
+                kilometros
+                FROM publicaciones";
+
+        $resultado = $bd->query($sql);
+
+        return $resultado;
+    }
+    
+    public function publicacionById($id) {
         $bd = getConnection();
         $sql = "SELECT 
                 p.id,
@@ -135,13 +200,15 @@ class Publicaciones {
 
     public function eliminarPublicacionById($id){
 
-    $bd = getConnection();
-    $sql = "DELETE FROM publicaciones WHERE id = '$id'";
+        $bd = getConnection();
+        $sql = "DELETE FROM publicaciones WHERE id = '$id'";
 
-    $resultado = $bd->query($sql);
+        $resultado = $bd->query($sql);
 
     return $resultado;
 }
+
+
 
 
 }

@@ -80,7 +80,7 @@ body {
           <option value="">Selecciona una publicacion</option>
           <?php foreach ($publicacionesUsuario as $pub): ?>
             <option value="<?= campoEditar($pub['id']) ?>" <?= ((int) $pub['id'] === $idSeleccionado) ? 'selected' : '' ?>>
-              ID <?= campoEditar($pub['id']) ?> - <?= campoEditar($pub['titulo']) ?>
+               <?= campoEditar($pub['titulo']) ?>
             </option>
           <?php endforeach; ?>
         </select>
