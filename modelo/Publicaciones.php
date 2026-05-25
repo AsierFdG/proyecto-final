@@ -140,22 +140,28 @@ class Publicaciones {
         return $resultado;
     }
 
-    public function getTodoPublicaciones() {
-        $bd = getConnection();
+ public function getTodoPublicaciones() {
 
-        $sql = "SELECT
-                id,
-                titulo,
-                dificultad,
-                tiempo_estimado,
-                kilometros
-                FROM publicaciones";
+    $bd = getConnection();
 
-        $resultado = $bd->query($sql);
+    $sql = "SELECT
+                publicaciones.id,
+                publicaciones.titulo,
+                publicaciones.dificultad,
+                publicaciones.tiempo_estimado,
+                publicaciones.kilometros,
+                usuarios.id AS usuario_id,
+                usuarios.nombre AS nombre_usuario
+            FROM publicaciones
+            INNER JOIN usuarios
+            ON publicaciones.usuario_id = usuarios.id
+            ORDER BY publicaciones.id DESC";
 
-        return $resultado;
-    }
-    
+    $resultado = $bd->query($sql);
+
+    return $resultado;
+}
+
     public function publicacionById($id) {
         $bd = getConnection();
         $sql = "SELECT 

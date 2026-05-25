@@ -57,7 +57,7 @@ $paginaActiva = basename($_SERVER['PHP_SELF']);
         </li>
 
         <li class="nav-item">
-          <a class="btn btn-outline-light mt-2 mt-lg-0 ms-lg-3" href="#">
+          <a class="btn btn-outline-light mt-2 mt-lg-0 ms-lg-3" href="../controlador/acabarSesion.php">
             <i class="bi bi-box-arrow-right"></i> Salir
           </a>
         </li>

@@ -58,9 +58,6 @@ if (isset($_SESSION['toast_guardado'])) {
     </a>
   </div>
 
-
-  <!--  VISTA ESCRITORIO -->
-
   <div class="d-none d-md-block">
 
     <div class="table-responsive">
@@ -218,7 +215,7 @@ if (isset($_SESSION['toast_guardado'])) {
 
 </body>
 </html>
-```
+
 
     </div>
 </main>
