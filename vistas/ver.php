@@ -11,6 +11,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 $pub=mostrarPublicacionById($id);
 $imagenes = $pub['imagenes'];
 $total = count($imagenes);
+$origen = $_GET['origen'] ?? 'perfil';
+$paginasVolver = [
+    'perfil' => 'perfil.php',
+    'publicaciones' => 'publicaciones.php'
+];
+$volver = $paginasVolver[$origen] ?? 'perfil.php';
 
 ?>
 
@@ -148,7 +154,7 @@ $total = count($imagenes);
             </div>
 
             <div class="mt-3 text-center">
-                <a href="perfil.php" class="btn btn-secondary">
+                <a href="<?php echo $volver; ?>" class="btn btn-secondary">
                     Volver
                 </a>
             </div>

@@ -79,7 +79,7 @@ body {
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label class="form-label"><i class="bi bi-clock"></i> Tiempo</label>
-                  <input type="text" name="tiempo" class="form-control" required>
+                  <input type="number" step="0.1" min="0.1" name="tiempo" class="form-control" required>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -146,6 +146,7 @@ body {
 
 
 <?php include("footer.php"); ?>
+<script src="../js/validaciones.js"></script>
 <!-- Bootstrap JS -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {

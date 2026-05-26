@@ -112,7 +112,7 @@ body {
             <tbody>
               <?php if (!empty($publicaciones)): ?>
                 <?php foreach ($publicaciones as $pub): ?>
-                  <?php $color = colorDificultad($pub['dificultad']); ?>
+                  <?php $color = colorDificultad($pub['dificultad_nombre']); ?>
 
                   <tr class="text-center publicacion-item"
                       data-dificultad="<?= campoPublicacion($pub['dificultad_nombre']) ?>"
@@ -136,7 +136,7 @@ body {
                     <td><?= campoPublicacion($pub['kilometros']) ?> km</td>
 
                     <td>
-                      <a href="ver.php?id=<?= campoPublicacion($pub['id']) ?>" class="btn btn-custom btn-sm px-3">
+                      <a href="ver.php?id=<?= campoPublicacion($pub['id']) ?>&origen=publicaciones" class="btn btn-custom btn-sm px-3">
                         Ver
                       </a>
                     </td>
@@ -157,7 +157,7 @@ body {
       <div class="d-block d-md-none">
         <?php if (!empty($publicaciones)): ?>
           <?php foreach ($publicaciones as $pub): ?>
-            <?php $color = colorDificultad($pub['dificultad']); ?>
+            <?php $color = colorDificultad($pub['dificultad_nombre']); ?>
 
             <div class="card mb-3 shadow border-0 publicacion-item"
                  data-dificultad="<?= campoPublicacion($pub['dificultad_nombre']) ?>"
@@ -182,7 +182,7 @@ body {
                   <strong>Km:</strong> <?= campoPublicacion($pub['kilometros']) ?> km
                 </p>
 
-                <a href="ver.php?id=<?= campoPublicacion($pub['id']) ?>" class="btn btn-custom btn-sm w-100">
+                <a href="ver.php?id=<?= campoPublicacion($pub['id']) ?>&origen=publicaciones" class="btn btn-custom btn-sm w-100">
                   Ver
                 </a>
               </div>

@@ -13,13 +13,21 @@ function campoPublicacion($valor) {
 
 function nombreDificultad($dificultad) {
     $dificultades = [
+        "1" => "Facil",
+        "2" => "Media",
+        "3" => "Dificil",
+        "4" => "Muy dificil",
         "Facil" => "Facil",
         "Media" => "Media",
         "Dificil" => "Dificil",
         "Muy dificil" => "Muy dificil"
     ];
 
-    return $dificultades[(string) $dificultad] ?? (string) $dificultad;
+    if (isset($dificultades[(string) $dificultad])) {
+        return $dificultades[(string) $dificultad];
+    }
+
+    return is_numeric($dificultad) ? "Sin dificultad" : (string) $dificultad;
 }
 
 function colorDificultad($dificultad) {
@@ -33,6 +41,13 @@ function colorDificultad($dificultad) {
     return $colores[nombreDificultad($dificultad)] ?? "secondary";
 }
 
+function prepararDificultadPublicacion($publicacion) {
+    $publicacion['dificultad'] = nombreDificultad($publicacion['dificultad'] ?? null);
+    $publicacion['dificultad_nombre'] = $publicacion['dificultad'];
+
+    return $publicacion;
+}
+
 function obtenerDatosPublicaciones() {
     $modeloPublicaciones = new Publicaciones();
     $resultadoPublicaciones = $modeloPublicaciones->getTodoPublicaciones();
@@ -41,7 +56,7 @@ function obtenerDatosPublicaciones() {
 
     if ($resultadoPublicaciones) {
         while ($fila = $resultadoPublicaciones->fetch_assoc()) {
-            $fila['dificultad_nombre'] = nombreDificultad($fila['dificultad']);
+            $fila = prepararDificultadPublicacion($fila);
             $publicaciones[] = $fila;
             $usuarios[$fila['usuario_id']] = $fila['nombre_usuario'];
         }
