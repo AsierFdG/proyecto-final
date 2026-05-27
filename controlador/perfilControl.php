@@ -13,8 +13,11 @@ session_start();
         $publi = new Publicaciones();
         $publicacion = $publi->publicacionById($id);
         $imagenes = $publi->imagenesByPublicacion($id);
+        $idUsuario = $_SESSION['idUsuario'] ?? null;
 
         $publicacion['imagenes'] = $imagenes;
+        $publicacion['likes'] = $publi->contarLikesPublicacion($id);
+        $publicacion['usuario_dio_like'] = $idUsuario ? $publi->usuarioDioLike($id, $idUsuario) : false;
 
         return $publicacion;
     }

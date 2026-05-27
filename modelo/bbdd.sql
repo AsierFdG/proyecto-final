@@ -47,3 +47,14 @@ CREATE TABLE imagenes (
 
 ALTER TABLE imagenes
 ADD url_imagen VARCHAR(255) NOT NULL;
+
+CREATE TABLE likes_publicaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    publicacion_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    fecha_like TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE KEY like_unico (publicacion_id, usuario_id),
+    FOREIGN KEY (publicacion_id) REFERENCES publicaciones(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+) ENGINE=InnoDB;

@@ -2,6 +2,7 @@
 include("cabecera.php"); 
 
 require_once __DIR__ . "/../controlador/perfilControl.php";
+require_once __DIR__ . "/../controlador/funcionesPublicaciones.php";
 
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -11,6 +12,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 $pub=mostrarPublicacionById($id);
 $imagenes = $pub['imagenes'];
 $total = count($imagenes);
+$dificultad = nombreDificultad($pub['dificultad']);
+$colorDificultad = colorDificultad($dificultad);
+$likes = (int) ($pub['likes'] ?? 0);
+$usuarioDioLike = !empty($pub['usuario_dio_like']);
 $origen = $_GET['origen'] ?? 'perfil';
 $paginasVolver = [
     'perfil' => 'perfil.php',
@@ -106,11 +111,9 @@ $volver = $paginasVolver[$origen] ?? 'perfil.php';
 
                         <div class="col-md-6 mb-2">
                             <strong>Dificultad:</strong>
-                            <?php 
-                            for ($i = 1; $i <= 4; $i++) {
-                                echo $i <= $pub['dificultad'] ? "⭐" : "☆";
-                            }
-                            ?>
+                            <span class="badge bg-<?php echo campoPublicacion($colorDificultad); ?> px-3 py-2">
+                                <?php echo campoPublicacion($dificultad); ?>
+                            </span>
                         </div>
 
                         <div class="col-md-6 mb-2">
@@ -143,9 +146,23 @@ $volver = $paginasVolver[$origen] ?? 'perfil.php';
                             <?php echo $pub['cimas']; ?>
                         </div>
 
-                        <div class="col-12 mb-2 text-muted">
-                            Publicado el: 
-                            <?php echo date("d/m/Y", strtotime($pub['fecha_publicacion'])); ?>
+                        <div class="col-12 mb-2 d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                            <span class="text-muted">
+                                Publicado el:
+                                <?php echo date("d/m/Y", strtotime($pub['fecha_publicacion'])); ?>
+                            </span>
+
+                            <form action="../controlador/likePublicacion.php" method="POST" class="d-inline-flex align-items-center gap-2">
+                                <input type="hidden" name="publicacion_id" value="<?php echo campoPublicacion($pub['id']); ?>">
+                                <input type="hidden" name="origen" value="<?php echo campoPublicacion($origen); ?>">
+
+                                <button type="submit"
+                                        class="btn <?php echo $usuarioDioLike ? 'btn-danger' : 'btn-outline-danger'; ?> btn-sm d-inline-flex align-items-center gap-2"
+                                        aria-label="<?php echo $usuarioDioLike ? 'Quitar like' : 'Dar like'; ?>">
+                                    <i class="bi <?php echo $usuarioDioLike ? 'bi-heart-fill' : 'bi-heart'; ?>"></i>
+                                    <span><?php echo $likes; ?></span>
+                                </button>
+                            </form>
                         </div>
 
                     </div>
@@ -168,3 +185,4 @@ $volver = $paginasVolver[$origen] ?? 'perfil.php';
 
 
 <?php include("footer.php"); ?>
+

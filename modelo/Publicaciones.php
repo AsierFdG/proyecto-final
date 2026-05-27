@@ -187,6 +187,58 @@ class Publicaciones {
 
     }
 
+    public function contarLikesPublicacion($idPublicacion) {
+        $bd = getConnection();
+        $sql = "SELECT COUNT(*) AS total
+                FROM likes_publicaciones
+                WHERE publicacion_id = '$idPublicacion'";
+
+        $resultado = $bd->query($sql);
+        $fila = $resultado ? $resultado->fetch_assoc() : null;
+
+        return (int) ($fila['total'] ?? 0);
+    }
+
+    public function usuarioDioLike($idPublicacion, $idUsuario) {
+        $bd = getConnection();
+        $sql = "SELECT id
+                FROM likes_publicaciones
+                WHERE publicacion_id = '$idPublicacion'
+                AND usuario_id = '$idUsuario'
+                LIMIT 1";
+
+        $resultado = $bd->query($sql);
+
+        return $resultado && $resultado->num_rows > 0;
+    }
+
+    public function insertarLike($idPublicacion, $idUsuario) {
+        $bd = getConnection();
+        $sql = "INSERT IGNORE INTO likes_publicaciones
+                (publicacion_id, usuario_id)
+                VALUES
+                ('$idPublicacion', '$idUsuario')";
+
+        return $bd->query($sql);
+    }
+
+    public function eliminarLike($idPublicacion, $idUsuario) {
+        $bd = getConnection();
+        $sql = "DELETE FROM likes_publicaciones
+                WHERE publicacion_id = '$idPublicacion'
+                AND usuario_id = '$idUsuario'";
+
+        return $bd->query($sql);
+    }
+
+    public function alternarLike($idPublicacion, $idUsuario) {
+        if ($this->usuarioDioLike($idPublicacion, $idUsuario)) {
+            return $this->eliminarLike($idPublicacion, $idUsuario);
+        }
+
+        return $this->insertarLike($idPublicacion, $idUsuario);
+    }
+
     public function imagenesByPublicacion($id){
         $bd = getConnection();
         $sql = "SELECT url_imagen

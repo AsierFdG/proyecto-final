@@ -80,7 +80,7 @@
                     <div class="card-body">
                         <i class="bi bi-chat-dots fs-1 mb-3"></i>
                         <h4>Interactuar</h4>
-                        <p>Comenta, valora rutas y comparte tu experiencia con la comunidad.</p>
+                        <p>Valora rutas y comparte tu experiencia con la comunidad.</p>
                     </div>
                 </div>
             </div>
